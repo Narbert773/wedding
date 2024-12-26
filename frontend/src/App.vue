@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1>Приглашение на свадьбу 17 мая 2025 | суббота</h1>
+    <h1>Приглашение на свадьбу 14 июня 2025 | суббота</h1>
     <h2>Никита & Даша</h2>
     <div>
       <p class="remaining-date">{{ days }} дней | {{ hours }} часов | {{ minutes }} минут | {{ seconds }} секунд</p>
@@ -15,7 +15,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 
-const targetDate = new Date('2025-05-17T00:00:00');
+const targetDate = new Date('2025-06-14T00:00:00');
+let intervalId: any;
 
 const days = ref(0);
 const hours = ref(0);
@@ -36,8 +37,6 @@ const calculateTimeRemaining = () => {
   }
 };
 
-let intervalId: any;
-
 onMounted(() => {
   calculateTimeRemaining();
   intervalId = setInterval(calculateTimeRemaining, 1000);
@@ -48,16 +47,16 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.remaining-date {
-  font-size: 20px;
-  font-weight: bold;
+  .remaining-date {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 </style>
