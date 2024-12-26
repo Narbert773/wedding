@@ -1,12 +1,11 @@
 <template>
-  <h1></h1>
   <div class="form-container">
-    <EntryForm />
+    <Dialog />
   </div>
 </template>
 
 <script setup lang="ts">
-import EntryForm from '../components/EntryForm.vue';
+import Dialog from '../components/Dialog.vue';
 </script>
 
 <style scoped lang="scss">

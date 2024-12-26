@@ -1,10 +1,6 @@
 <template>
   <header class="header">
-    <h1>Приглашение на свадьбу 14 июня 2025 | суббота</h1>
-    <h2>Никита & Даша</h2>
-    <div>
-      <Timer />
-    </div>
+    <div></div>
   </header>
   <main>
     <section class="memo-guests"></section>
@@ -12,9 +8,7 @@
   <footer></footer>
 </template>
 
-<script setup lang="ts">
-import Timer from '../components/Timer.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .header {

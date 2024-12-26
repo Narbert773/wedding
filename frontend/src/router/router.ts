@@ -9,6 +9,18 @@ const routes = [
     path: '/main',
     component: () => import('../pages/MainPage.vue'),
   },
+  {
+    path: '/single',
+    component: () => import('../pages/SinglePage.vue'),
+  },
+  {
+    path: '/plural',
+    component: () => import('../pages/PluralPage.vue'),
+  },
+  {
+    path: '/kids',
+    component: () => import('../pages/KidsPage.vue'),
+  },
 ];
 
 const router = createRouter({

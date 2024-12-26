@@ -29,4 +29,8 @@ const secondNameRules = [
 ];
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.mx-auto {
+  margin-top: 100px;
+}
+</style>

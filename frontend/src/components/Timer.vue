@@ -1,5 +1,5 @@
 <template>
-  <p class="remaining-date">{{ days }} дней | {{ hours }} часов | {{ minutes }} минут | {{ seconds }} секунд</p>
+  <p class="remaining-date">Осталось: {{ days }} дней | {{ hours }} {{ writingHoursProperly(hours) }} | {{ minutes }} минут | {{ seconds }} секунд</p>
 </template>
 
 <script setup lang="ts">
@@ -12,6 +12,7 @@ const days = ref(0);
 const hours = ref(0);
 const minutes = ref(0);
 const seconds = ref(0);
+const hoursWriting = ref('');
 
 const calculateTimeRemaining = () => {
   const now = new Date();
@@ -27,6 +28,14 @@ const calculateTimeRemaining = () => {
   }
 };
 
+const writingHoursProperly = (num: number) => {
+  hours.value = num;
+  if (num < 5 && num !== 0) {
+    return (hoursWriting.value = 'часа');
+  }
+  return (hoursWriting.value = 'часов');
+};
+
 onMounted(() => {
   calculateTimeRemaining();
   intervalId = setInterval(calculateTimeRemaining, 1000);
@@ -39,6 +48,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .remaining-date {
+  margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
 }
