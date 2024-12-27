@@ -7,10 +7,12 @@
     </div>
     <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabled" @click="generateGuestForms">Подтвердить</v-btn>
     <div class="guest-form__wrapper">
-      <div v-for="index in guests" :key="index" class="guest-form">
-        <p class="guest-number">Гость № {{ index + 1 }}</p>
-        <EntryForm class="entry-form" :index="index" @formSubmitted="handleFormSubmitted" />
-      </div>
+      <transition-group name="fade" tag="div" class="guest-form__transition-wrapper">
+        <div v-for="index in guests" :key="index" class="guest-form">
+          <p class="guest-number">Гость № {{ index + 1 }}</p>
+          <EntryForm class="entry-form" :index="index" @formSubmitted="handleFormSubmitted" />
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -114,6 +116,37 @@ function handleFormSubmitted(index: number) {
         margin-top: 25px;
       }
     }
+  }
+
+  .guest-form__transition-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .fade-enter-from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  .fade-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
 </style>
