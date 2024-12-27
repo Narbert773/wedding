@@ -30,6 +30,9 @@ const calculateTimeRemaining = () => {
 
 const writingHoursProperly = (num: number) => {
   hours.value = num;
+  if (num === 1) {
+    return (hoursWriting.value = 'час');
+  }
   if (num < 5 && num !== 0) {
     return (hoursWriting.value = 'часа');
   }

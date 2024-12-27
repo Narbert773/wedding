@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div></div>
+    <div>ГЛАВНАЯ СТРАНИЦА</div>
   </header>
   <main>
     <section class="memo-guests"></section>
@@ -16,5 +16,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+div {
+  margin-top: 200px;
 }
 </style>
