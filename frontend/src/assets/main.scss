@@ -14,9 +14,43 @@ body {
 
 .link {
   text-decoration: none;
-  color: black;
+  color: #121212;
 }
 
 .h3 {
   margin-top: 150px;
+}
+
+.app.light {
+  background-color: white;
+  color: #121212;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: white;
+}
+
+.app.light .toolbar {
+  background-color: white;
+  color: #121212;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+.app.dark .toolbar {
+  background-color: #121212;
+  color: white;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+.app.light .link {
+  background-color: white;
+  color: #121212;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+.app.dark .link {
+  background-color: #121212;
+  color: white;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }

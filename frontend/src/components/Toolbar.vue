@@ -1,7 +1,9 @@
 <template>
   <v-toolbar density="compact" class="toolbar">
     <v-btn v-if="showBackButton" class="back-btn"
-      ><v-toolbar-title class="title"><router-link to="/" class="link">Назад</router-link></v-toolbar-title>
+      ><v-toolbar-title class="toolbar-title"
+        ><router-link to="/" class="link"><v-icon icon="mdi-arrow-left" start></v-icon>Назад</router-link></v-toolbar-title
+      >
     </v-btn>
   </v-toolbar>
 </template>
@@ -18,9 +20,5 @@ const showBackButton = computed(() => route.path !== '/');
 <style scoped lang="scss">
 .toolbar {
   margin-bottom: 100px;
-
-  .title {
-    border-bottom: 3px solid red;
-  }
 }
 </style>

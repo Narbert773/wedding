@@ -109,7 +109,7 @@ function handleFormSubmitted(index: number) {
       height: fit-content;
 
       .guest-number {
-        margin: 55px auto auto;
+        margin: auto;
       }
 
       .entry-form {
