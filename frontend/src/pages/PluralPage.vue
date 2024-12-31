@@ -68,7 +68,7 @@ function handleFormSubmitted(index: number) {
   if (allSubmitted) {
     isLoading.value = true;
     setTimeout(() => {
-      isLoading.value = true;
+      isLoading.value = false;
       router.push('/main');
     }, 1000);
   }

@@ -2,9 +2,9 @@
   <div class="form-border">
     <v-sheet class="mx-auto" width="300">
       <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted">
-        <v-text-field v-model="kidsName" :rules="kidsFirstNameRules" label="Имя"></v-text-field>
-        <v-text-field v-model="kidsLastName" :rules="kidsLastNameRules" label="Фамилия"></v-text-field>
-        <v-text-field v-model="kidsAge" :rules="kidsAgeRules" label="Возраст"></v-text-field>
+        <v-text-field v-model="kid.name" :rules="kidsFirstNameRules" label="Имя"></v-text-field>
+        <v-text-field v-model="kid.lastName" :rules="kidsLastNameRules" label="Фамилия"></v-text-field>
+        <v-text-field v-model="kid.age" :rules="kidsAgeRules" label="Возраст"></v-text-field>
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
       </v-form>
     </v-sheet>
@@ -13,10 +13,15 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { Kid } from '../interfaces/kid.interface';
 
-const kidsName = ref('');
-const kidsLastName = ref('');
-const kidsAge = ref('');
+const kid = ref<Kid>({
+  id: 0,
+  name: '',
+  lastName: '',
+  age: '',
+});
+
 const isDisabled = ref(true);
 const isFormSubmitted = ref(false);
 const rulesText = ref('');
@@ -52,18 +57,18 @@ const kidsAgeRules = [
   },
 ];
 
-watch([kidsName, kidsLastName, kidsAge, rulesText], () => {
-  isDisabled.value = kidsName.value.trim().length === 0 || kidsLastName.value.trim().length === 0 || kidsAge.value.length === 0 || rulesText.value.length !== 0;
-});
+watch(
+  () => kid.value,
+  () => {
+    isDisabled.value = kid.value.name.trim().length === 0 || kid.value.lastName.trim().length === 0 || kid.value.age === 0;
+  },
+  { deep: true }
+);
 
 async function submitForm() {
-  const formData = {
-    kidsFirstName: kidsName.value,
-    kidsLastName: kidsLastName.value,
-  };
   try {
     await new Promise((resolve) => setTimeout(resolve, 300));
-    alert(`${kidsName.value} ${kidsLastName.value} успешно добавлен`);
+    alert(`${kid.value.name} ${kid.value.lastName} успешно добавлен`);
     isFormSubmitted.value = true;
     isDisabled.value = true;
     emit('formSubmitted', props.index);
@@ -75,3 +80,14 @@ async function submitForm() {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.mx-auto {
+  border-radius: 5px;
+}
+
+.form-border {
+  border: 5px solid white;
+  padding: 10px;
+}
+</style>

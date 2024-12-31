@@ -23,6 +23,7 @@ const guest = ref<Guest>({
 const isDisabled = ref(true);
 const isFormSubmitted = ref(false);
 
+const props = defineProps<{ index?: number }>();
 const emit = defineEmits(['formSubmitted']);
 
 const firstNameRules = [
@@ -53,7 +54,7 @@ async function submitForm() {
     alert(`Гость ${guest.value.name} ${guest.value.lastName} успешно добавлен`);
     isFormSubmitted.value = true;
     isDisabled.value = true;
-    emit('formSubmitted', guest.value.id);
+    emit('formSubmitted', props.index);
   } catch (error) {
     if (guest.value.id !== undefined) {
       console.error(`Ошибка при отправке данных для гостя №${guest.value.id + 1}:`, error);
@@ -65,8 +66,7 @@ async function submitForm() {
 
 <style scoped lang="scss">
 .mx-auto {
-  margin-top: 100px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .form-border {
