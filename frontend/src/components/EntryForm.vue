@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Guest } from '../interfaces/guest.interface.ts';
+import { Guest } from '../interfaces/guest.interface';
 
 const guest = ref<Guest>({
   id: 0,
