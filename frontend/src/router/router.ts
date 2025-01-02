@@ -21,6 +21,10 @@ const routes = [
     path: '/kids',
     component: () => import('../pages/KidsPage.vue'),
   },
+  {
+    path: '/guests',
+    component: () => import('../pages/GuestsPage.vue'),
+  },
 ];
 
 const router = createRouter({

@@ -1,5 +1,5 @@
 export interface Guest {
   id: number;
-  name: string;
+  firstName: string;
   lastName: string;
 }

@@ -2,7 +2,7 @@
   <div class="form-border">
     <v-sheet class="mx-auto" width="300">
       <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted">
-        <v-text-field v-model="kid.name" :rules="kidsFirstNameRules" label="Имя"></v-text-field>
+        <v-text-field v-model="kid.firstName" :rules="kidsFirstNameRules" label="Имя"></v-text-field>
         <v-text-field v-model="kid.lastName" :rules="kidsLastNameRules" label="Фамилия"></v-text-field>
         <v-text-field v-model="kid.age" :rules="kidsAgeRules" label="Возраст"></v-text-field>
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
@@ -14,10 +14,12 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { Kid } from '../interfaces/kid.interface';
+import axios from 'axios';
+import { BASE_URL } from '../variables';
 
 const kid = ref<Kid>({
   id: 0,
-  name: '',
+  firstName: '',
   lastName: '',
   age: '',
 });
@@ -60,15 +62,22 @@ const kidsAgeRules = [
 watch(
   () => kid.value,
   () => {
-    isDisabled.value = kid.value.name.trim().length === 0 || kid.value.lastName.trim().length === 0 || kid.value.age === 0;
+    isDisabled.value = kid.value.firstName.trim().length === 0 || kid.value.lastName.trim().length === 0 || kid.value.age === 0;
   },
   { deep: true }
 );
 
 async function submitForm() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    alert(`${kid.value.name} ${kid.value.lastName} успешно добавлен`);
+    const newKid = {
+      firstName: kid.value.firstName.trim(),
+      lastName: kid.value.lastName.trim(),
+      age: kid.value.age,
+    };
+
+    await axios.post(`${BASE_URL}/kids`, newKid);
+
+    alert(`${kid.value.firstName} ${kid.value.lastName} успешно добавлен`);
     isFormSubmitted.value = true;
     isDisabled.value = true;
     emit('formSubmitted', props.index);

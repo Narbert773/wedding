@@ -2,7 +2,7 @@
   <div class="form-border">
     <v-sheet class="mx-auto" width="300">
       <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted">
-        <v-text-field v-model="guest.name" :rules="firstNameRules" label="Имя"></v-text-field>
+        <v-text-field v-model="guest.firstName" :rules="firstNameRules" label="Имя"></v-text-field>
         <v-text-field v-model="guest.lastName" :rules="lastNameRules" label="Фамилия"></v-text-field>
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
       </v-form>
@@ -13,10 +13,12 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { Guest } from '../interfaces/guest.interface';
+import { BASE_URL } from '../variables';
+import axios from 'axios';
 
 const guest = ref<Guest>({
   id: 0,
-  name: '',
+  firstName: '',
   lastName: '',
 });
 
@@ -43,22 +45,26 @@ const lastNameRules = [
 watch(
   () => guest.value,
   () => {
-    isDisabled.value = guest.value.name.trim().length === 0 || guest.value.lastName.trim().length === 0;
+    isDisabled.value = guest.value.firstName.trim().length === 0 || guest.value.lastName.trim().length === 0;
   },
   { deep: true }
 );
 
-async function submitForm() {
+async function submitForm(): Promise<void> {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    alert(`Гость ${guest.value.name} ${guest.value.lastName} успешно добавлен`);
+    const newGuest = {
+      firstName: guest.value.firstName.trim(),
+      lastName: guest.value.lastName.trim(),
+    };
+
+    await axios.post(`${BASE_URL}/guests`, newGuest);
+
+    alert(`Гость ${guest.value.firstName} ${guest.value.lastName} успешно добавлен`);
     isFormSubmitted.value = true;
     isDisabled.value = true;
     emit('formSubmitted', props.index);
   } catch (error) {
-    if (guest.value.id !== undefined) {
-      console.error(`Ошибка при отправке данных для гостя №${guest.value.id + 1}:`, error);
-    }
+    console.error('Ошибка при отправке данных:', error);
     alert('Ошибка при отправке данных!');
   }
 }
