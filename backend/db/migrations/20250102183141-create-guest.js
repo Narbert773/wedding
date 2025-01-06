@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -26,7 +25,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Guests');
   },
 };

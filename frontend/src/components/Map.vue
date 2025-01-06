@@ -29,7 +29,7 @@ import { YandexMap, YandexMapDefaultSchemeLayer, YandexMapDefaultFeaturesLayer, 
 const map = shallowRef<null | YMap>(null);
 
 const openLink = (url: string) => {
-  alert('Перейти в Яндекс Карты?');
+  confirm('Перейти в Яндекс Карты?');
   window.open(url, '_blank');
 };
 
