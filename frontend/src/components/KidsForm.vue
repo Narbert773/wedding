@@ -8,12 +8,14 @@
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
       </v-form>
     </v-sheet>
+    <SnackBar :message="snackbarMessage" :color="snackbarColor" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { Kid } from '../interfaces/kid.interface';
+import SnackBar from './SnackBar.vue';
 import axios from 'axios';
 import { BASE_URL } from '../variables';
 
@@ -27,6 +29,10 @@ const kid = ref<Kid>({
 const isDisabled = ref(true);
 const isFormSubmitted = ref(false);
 const rulesText = ref('');
+const isAgeValid = ref(true);
+
+const snackbarMessage = ref('');
+const snackbarColor = ref('');
 
 const kidsFirstNameRules = [requiredFieldRule('Необходимо внести имя')];
 const kidsLastNameRules = [requiredFieldRule('Необходимо внести фамилию')];
@@ -47,13 +53,22 @@ function requiredFieldRule(errorMessage: string) {
 
 const kidsAgeRules = [
   (value: string) => {
+    if (!value.trim()) {
+      isAgeValid.value = false;
+      return (rulesText.value = 'Необходимо ввести возраст');
+    }
+
     const numericValue = Number(value);
 
     if (isNaN(numericValue) || !Number.isInteger(numericValue)) {
+      isAgeValid.value = false;
       return (rulesText.value = 'Необходимо ввести число');
     } else if (numericValue > 13) {
+      isAgeValid.value = false;
       return (rulesText.value = 'Это уже не ребенок :)');
     }
+
+    isAgeValid.value = true;
     rulesText.value = '';
     return true;
   },
@@ -62,7 +77,14 @@ const kidsAgeRules = [
 watch(
   () => kid.value,
   () => {
-    isDisabled.value = kid.value.firstName.trim().length === 0 || kid.value.lastName.trim().length === 0 || kid.value.age === 0;
+    const isFirstNameValid = kid.value.firstName.trim().length > 0;
+    const isLastNameValid = kid.value.lastName.trim().length > 0;
+
+    const ageValidationResult = kidsAgeRules.every((rule) => rule(String(kid.value.age)) === true);
+
+    isAgeValid.value = ageValidationResult;
+
+    isDisabled.value = !(isFirstNameValid && isLastNameValid && ageValidationResult);
   },
   { deep: true }
 );
@@ -77,7 +99,8 @@ async function submitForm() {
 
     await axios.post(`${BASE_URL}/kids`, newKid);
 
-    alert(`${kid.value.firstName} ${kid.value.lastName} успешно добавлен`);
+    snackbarMessage.value = `${kid.value.firstName} ${kid.value.lastName} успешно добавлен`;
+    snackbarColor.value = 'success';
     isFormSubmitted.value = true;
     isDisabled.value = true;
     emit('formSubmitted', props.index);
@@ -85,7 +108,8 @@ async function submitForm() {
     if (props.index !== undefined) {
       console.error(`Ошибка при отправке данных для №${props.index + 1}:`, error);
     }
-    alert('Ошибка при отправке данных!');
+    snackbarMessage.value = 'Ошибка при отправке данных!';
+    snackbarColor.value = 'red';
   }
 }
 </script>

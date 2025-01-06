@@ -35,7 +35,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .h3 {
-  margin-bottom: 10px;
+  margin-bottom: 35px;
 }
 
 .fade-enter-active,

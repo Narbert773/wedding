@@ -1,8 +1,8 @@
 <template>
-  <div :class="['app', theme]">
+  <div :class="['app', theme]" v-if="!textStore.loading">
     <Toolbar class="toolbar" />
-    <h1 class="h1">Приглашение на свадьбу 14 июня 2025 | суббота</h1>
-    <h2 class="h2">Никита & Даша</h2>
+    <h1 class="h1">{{ textStore.textData.app.mainHeader }}</h1>
+    <h2 class="h2">{{ textStore.textData.app.names }}</h2>
     <Timer />
     <div class="theme-container">
       <v-icon v-if="theme === 'light'" class="theme-icon" icon="mdi-brightness-4" start @click="toggleTheme"></v-icon>
@@ -15,8 +15,11 @@
 <script setup lang="ts">
 import Timer from './components/Timer.vue';
 import Toolbar from './components/Toolbar.vue';
+import { useTextStore } from './store/textStore';
 
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
+
+const textStore = useTextStore();
 
 const theme = ref('light');
 
@@ -24,6 +27,10 @@ const toggleTheme = () => {
   theme.value = theme.value === 'dark' ? 'light' : 'dark';
   localStorage.setItem('theme', theme.value);
 };
+
+onBeforeMount(async () => {
+  await textStore.fetchTextData();
+});
 
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme');

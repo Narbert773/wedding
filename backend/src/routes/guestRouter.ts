@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-const { Guest } = require('../db/models');
+const { Guest } = require('../../db/models');
 
 const guestsRouter = express.Router();
 

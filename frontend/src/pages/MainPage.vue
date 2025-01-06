@@ -1,28 +1,24 @@
 <template>
   <header class="header">
-    <h1>План дня</h1>
-
-    <p>
-      Это текст. Нажмите один раз и выберите «Редактировать текст» или просто кликните дважды, чтобы добавить свой текст и настроить шрифт. Здесь вы можете рассказать посетителям подробнее о себе. Это текст. Нажмите один раз и выберите «Редактировать текст» или просто кликните дважды, чтобы добавить
-      свой текст и настроить шрифт. Здесь вы можете рассказать посетителям подробнее о себе. Это текст. Нажмите один раз и выберите «Редактировать текст» или просто кликните дважды.
-    </p>
+    <h1>{{ textStoreMainPage.mainHeader }}</h1>
+    <p>{{ textStoreMainPage.description }}</p>
   </header>
   <main>
     <section class="wedding">
       <h2 class="wedding-title">Свадьба</h2>
       <div class="wedding-wrapper">
         <div class="wedding-group">
-          <p>Когда</p>
-          <p>14.06.2025 10:30</p>
-          <p>14.06.2025 14:00</p>
+          <p>{{ textStoreMainPage.when }}</p>
+          <p>{{ textStoreMainPage.marriageTime }}</p>
+          <p>{{ textStoreMainPage.banquetTime }}</p>
         </div>
         <v-divider :thickness="3" class="border-opacity-100" color="info" vertical></v-divider>
         <div class="wedding-group">
-          <p>Где</p>
-          <p>Дворец бракосочетания №1</p>
-          <span>Малый Харитоньевский переулок, 10с1</span>
-          <p>Art Village</p>
-          <span>Рябиновая ул., 1Г/3, д. Голиково</span>
+          <p>{{ textStoreMainPage.where }}</p>
+          <p>{{ textStoreMainPage.marriagePlace.name }}</p>
+          <span>{{ textStoreMainPage.marriagePlace.adress }}</span>
+          <p>{{ textStoreMainPage.banquetPlace.name }}</p>
+          <span>{{ textStoreMainPage.banquetPlace.adress }}</span>
         </div>
       </div>
     </section>
@@ -35,6 +31,10 @@
 
 <script setup lang="ts">
 import Map from '../components/Map.vue';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreMainPage = textStore.textData.mainPage;
 </script>
 
 <style scoped lang="scss">

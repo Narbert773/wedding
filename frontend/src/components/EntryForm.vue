@@ -7,12 +7,14 @@
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
       </v-form>
     </v-sheet>
+    <SnackBar :message="snackbarMessage" :color="snackbarColor" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { Guest } from '../interfaces/guest.interface';
+import SnackBar from './SnackBar.vue';
 import { BASE_URL } from '../variables';
 import axios from 'axios';
 
@@ -24,6 +26,8 @@ const guest = ref<Guest>({
 
 const isDisabled = ref(true);
 const isFormSubmitted = ref(false);
+const snackbarMessage = ref('');
+const snackbarColor = ref('');
 
 const props = defineProps<{ index?: number }>();
 const emit = defineEmits(['formSubmitted']);
@@ -59,13 +63,15 @@ async function submitForm(): Promise<void> {
 
     await axios.post(`${BASE_URL}/guests`, newGuest);
 
-    alert(`Гость ${guest.value.firstName} ${guest.value.lastName} успешно добавлен`);
+    snackbarMessage.value = `Гость ${guest.value.firstName} ${guest.value.lastName} успешно добавлен`;
+    snackbarColor.value = 'success';
     isFormSubmitted.value = true;
     isDisabled.value = true;
     emit('formSubmitted', props.index);
   } catch (error) {
     console.error('Ошибка при отправке данных:', error);
-    alert('Ошибка при отправке данных!');
+    snackbarMessage.value = 'Ошибка при отправке данных!';
+    snackbarColor.value = 'red';
   }
 }
 </script>

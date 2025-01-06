@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-const { Kid } = require('../db/models');
+const { Kid } = require('../../db/models');
 
 const kidsRouter = express.Router();
 
