@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Leckerli+One&family=Oleo+Script:wght@400;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,10 +11,14 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: 'Rubik', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .app {
-  min-height: 100vh; /* Обеспечивает заполнение всей высоты страницы */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }

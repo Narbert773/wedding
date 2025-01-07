@@ -17,6 +17,47 @@
     "banquetPlace": {
       "name": "Art Village",
       "adress": "Рябиновая ул., 1Г/3, д. Голиково"
+    },
+    "footer": {
+      "title": "Будем очень вам рады!",
+      "firstParagraph": "С нетерпением ждем встречи с вами.",
+      "secondParagraph": "Обращайтесь по любым вопросам!",
+      "contacts": {
+        "nikita": "@nsmeenov",
+        "dasha": "@Dasha_mlt",
+        "telegramGroup": "Группа в телеграме",
+        "copyright": "© 2025"
+      }
+    }
+  },
+  "dialog": {
+    "mainButton": "Я приду!",
+    "buttonOptions": {
+      "title": "С кем вы планируете прийти?",
+      "text": "Необходимо выбрать опцию снизу для подсчета всех гостей и чтобы за один раз заполнить всех сразу",
+      "firstOption": "Один",
+      "secondOption": "Несколько человек",
+      "thirdOption": "С детьми"
+    }
+  },
+  "secret": {
+    "first": {
+      "title": "Не открывать",
+      "text": "Закрыть"
+    },
+    "second": {
+      "title": "Не нужно открывать",
+      "text": "Закрыть"
+    },
+    "third": {
+      "title": "Вернись назад",
+      "text": "Закрыть"
+    },
+    "last": {
+      "header": "Введите пароль",
+      "label": "Пароль",
+      "confirm": "Подтвердить",
+      "text": "Закрыть"
     }
   }
 }

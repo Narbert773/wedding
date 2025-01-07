@@ -4,7 +4,7 @@
     :settings="{
       location: {
         center: [37.617644, 55.755819],
-        zoom: 9.5,
+        zoom: 9.4,
       },
       showScaleInCopyrights: true,
       theme: 'light',
