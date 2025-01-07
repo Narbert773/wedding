@@ -65,7 +65,6 @@ const snackbarMessage = ref('');
 const snackbarColor = ref('');
 const password = ref('');
 const isLoading = ref(false);
-
 const internalShow = ref(false);
 
 function checkPassword() {

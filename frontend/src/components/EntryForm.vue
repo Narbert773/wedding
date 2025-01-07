@@ -15,8 +15,7 @@
 import { ref, watch } from 'vue';
 import { Guest } from '../interfaces/guest.interface';
 import SnackBar from './SnackBar.vue';
-import { BASE_URL } from '../variables';
-import axios from 'axios';
+import { addGuest } from '../services/guestService';
 
 const guest = ref<Guest>({
   id: 0,
@@ -61,7 +60,7 @@ async function submitForm(): Promise<void> {
       lastName: guest.value.lastName.trim(),
     };
 
-    await axios.post(`${BASE_URL}/guests`, newGuest);
+    await addGuest(newGuest);
 
     snackbarMessage.value = `Гость ${guest.value.firstName} ${guest.value.lastName} успешно добавлен`;
     snackbarColor.value = 'success';

@@ -9,7 +9,7 @@ kidsRouter
   .get(async (req: Request, res: Response): Promise<void> => {
     try {
       const kids = await Kid.findAll({
-        order: [['createdAt', 'DESC']],
+        order: [['createdAt', 'ASC']],
       });
       res.json(kids);
     } catch (error) {
@@ -49,10 +49,10 @@ kidsRouter.delete('/:id', async (req: Request, res: Response): Promise<void> => 
 
 kidsRouter.patch('/:id', async (req: Request<{ id: string }, {}, UpdateKidBody>, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { firstName, lastName, age } = req.body;
+  const { firstName, lastName } = req.body;
 
-  if (!firstName && !lastName && age) {
-    res.status(400).json({ message: 'At least one field (firstName or lastName or age) is required' });
+  if (!firstName && !lastName) {
+    res.status(400).json({ message: 'At least one field (firstName or lastName) is required' });
     return;
   }
 
@@ -66,7 +66,6 @@ kidsRouter.patch('/:id', async (req: Request<{ id: string }, {}, UpdateKidBody>,
 
     if (firstName) kid.firstName = firstName;
     if (lastName) kid.lastName = lastName;
-    if (age) kid.age = age;
 
     await kid.save();
 

@@ -9,7 +9,7 @@ guestsRouter
   .get(async (req: Request, res: Response): Promise<void> => {
     try {
       const guests = await Guest.findAll({
-        order: [['createdAt', 'DESC']],
+        order: [['createdAt', 'ASC']],
       });
       res.json(guests);
     } catch (error) {

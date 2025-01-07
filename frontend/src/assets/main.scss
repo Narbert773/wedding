@@ -93,3 +93,14 @@ html::-webkit-scrollbar-track {
   background-color: white;
   transition: color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
+
+.app.light .styled-table {
+  background: white;
+  color: #333;
+}
+
+.app.dark .styled-table {
+  background: #1e1e1e;
+  color: white;
+  border: 4px solid white;
+}

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
-import { BASE_URL } from '../variables';
+import { fetchText } from '../services/textService';
 
 export const useTextStore = defineStore('textStore', {
   state: () => ({
@@ -13,8 +12,8 @@ export const useTextStore = defineStore('textStore', {
       this.loading = true;
       this.error = null;
       try {
-        const response = await axios.get(`${BASE_URL}/text`);
-        this.textData = response.data;
+        const response = await fetchText();
+        this.textData = response;
       } catch (err) {
         this.error = 'Ошибка загрузки данных';
         console.error(err);

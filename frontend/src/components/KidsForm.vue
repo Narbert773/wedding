@@ -16,8 +16,7 @@
 import { ref, watch } from 'vue';
 import { Kid } from '../interfaces/kid.interface';
 import SnackBar from './SnackBar.vue';
-import axios from 'axios';
-import { BASE_URL } from '../variables';
+import { addKid } from '../services/kidService';
 
 const kid = ref<Kid>({
   id: 0,
@@ -97,7 +96,7 @@ async function submitForm() {
       age: kid.value.age,
     };
 
-    await axios.post(`${BASE_URL}/kids`, newKid);
+    await addKid(newKid);
 
     snackbarMessage.value = `${kid.value.firstName} ${kid.value.lastName} успешно добавлен`;
     snackbarColor.value = 'success';
