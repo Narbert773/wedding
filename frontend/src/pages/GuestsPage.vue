@@ -39,8 +39,8 @@ import { onMounted, ref } from 'vue';
 import { Guest } from '../interfaces/guest.interface';
 import { Kid } from '../interfaces/kid.interface';
 import Spinner from '../components/Spinner.vue';
-import { getAllAdults, removeGuest } from '../services/guestService';
-import { getAllKids, removeKid } from '../services/kidService';
+import { fetchAllGuests, removeGuest } from '../services/guestService';
+import { fetchAllKids, removeKid } from '../services/kidService';
 
 const guests = ref<Guest[]>([]);
 const kids = ref<Kid[]>([]);
@@ -54,8 +54,8 @@ function countAllGuests(): number {
 
 async function getAllGuests(): Promise<void> {
   try {
-    const guestResponse = await getAllAdults();
-    const kidResponse = await getAllKids();
+    const guestResponse = await fetchAllGuests();
+    const kidResponse = await fetchAllKids();
     guests.value = guestResponse;
     kids.value = kidResponse;
   } catch (error) {

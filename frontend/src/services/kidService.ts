@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Kid } from '../interfaces/kid.interface';
 import { BASE_URL } from '../variables';
 
-export async function getAllKids(): Promise<Kid[]> {
+export async function fetchAllKids(): Promise<Kid[]> {
   try {
     const response = await axios.get(`${BASE_URL}/kids`);
     return response.data;

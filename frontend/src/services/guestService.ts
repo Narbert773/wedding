@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Guest } from '../interfaces/guest.interface';
 import { BASE_URL } from '../variables';
 
-export async function getAllAdults(): Promise<Guest[]> {
+export async function fetchAllGuests(): Promise<Guest[]> {
   try {
     const response = await axios.get(`${BASE_URL}/guests`);
     return response.data;
