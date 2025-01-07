@@ -1,12 +1,8 @@
 import express, { Request, Response } from 'express';
+import { CreateGuestBody, UpdateGuestBody } from '../interfaces/guest.interface';
 const { Guest } = require('../../db/models');
 
 const guestsRouter = express.Router();
-
-interface CreateGuestBody {
-  firstName: string;
-  lastName: string;
-}
 
 guestsRouter
   .route('/')
@@ -48,6 +44,35 @@ guestsRouter.delete('/:id', async (req: Request, res: Response): Promise<void> =
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
+  }
+});
+
+guestsRouter.patch('/:id', async (req: Request<{ id: string }, {}, UpdateGuestBody>, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const { firstName, lastName } = req.body;
+
+  if (!firstName && !lastName) {
+    res.status(400).json({ message: 'At least one field (firstName or lastName) is required' });
+    return;
+  }
+
+  try {
+    const guest = await Guest.findByPk(id);
+
+    if (!guest) {
+      res.status(404).json({ message: 'Guest not found' });
+      return;
+    }
+
+    if (firstName) guest.firstName = firstName;
+    if (lastName) guest.lastName = lastName;
+
+    await guest.save();
+
+    res.status(200).json(guest);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Unexpected error occurred.', error });
   }
 });
 
