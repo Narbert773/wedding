@@ -5,7 +5,7 @@
         <v-text-field v-model="kid.firstName" :rules="kidsFirstNameRules" label="Имя"></v-text-field>
         <v-text-field v-model="kid.lastName" :rules="kidsLastNameRules" label="Фамилия"></v-text-field>
         <v-text-field v-model="kid.age" :rules="kidsAgeRules" label="Возраст"></v-text-field>
-        <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
+        <v-btn class="mt-2" type="submit" block :disabled="isDisabled">{{ textStoreButton.submit }}</v-btn>
       </v-form>
     </v-sheet>
     <SnackBar :message="snackbarMessage" :color="snackbarColor" />
@@ -17,6 +17,10 @@ import { ref, watch } from 'vue';
 import { Kid } from '../interfaces/kid.interface';
 import SnackBar from './SnackBar.vue';
 import { addKid } from '../services/kidService';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreButton = textStore.textData.button;
 
 const kid = ref<Kid>({
   id: 0,

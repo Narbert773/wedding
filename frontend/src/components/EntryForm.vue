@@ -4,7 +4,7 @@
       <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted">
         <v-text-field v-model="guest.firstName" :rules="firstNameRules" label="Имя"></v-text-field>
         <v-text-field v-model="guest.lastName" :rules="lastNameRules" label="Фамилия"></v-text-field>
-        <v-btn class="mt-2" type="submit" block :disabled="isDisabled">Добавить</v-btn>
+        <v-btn class="mt-2" type="submit" block :disabled="isDisabled">{{ textStoreButton.submit }}</v-btn>
       </v-form>
     </v-sheet>
     <SnackBar :message="snackbarMessage" :color="snackbarColor" />
@@ -16,6 +16,10 @@ import { ref, watch } from 'vue';
 import { Guest } from '../interfaces/guest.interface';
 import SnackBar from './SnackBar.vue';
 import { addGuest } from '../services/guestService';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreButton = textStore.textData.button;
 
 const guest = ref<Guest>({
   id: 0,

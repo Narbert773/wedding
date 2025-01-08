@@ -29,3 +29,15 @@ export async function removeGuest(guest: Guest): Promise<void> {
     throw error;
   }
 }
+
+export async function changeGuest(guest: Guest): Promise<void> {
+  try {
+    await axios.patch(`${BASE_URL}/guests/${guest.id}`, {
+      firstName: guest.firstName,
+      lastName: guest.lastName,
+    });
+  } catch (error) {
+    console.error('Ошибка при редактировании гостя:', error);
+    throw error;
+  }
+}

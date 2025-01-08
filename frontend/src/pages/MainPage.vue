@@ -5,7 +5,7 @@
   </header>
   <main>
     <section class="wedding">
-      <h2 class="wedding-title">Свадьба</h2>
+      <h2 class="wedding-title">{{ textStoreMainPage.weddingTitle }}</h2>
       <div class="wedding-wrapper">
         <div class="wedding-group">
           <p>{{ textStoreMainPage.when }}</p>

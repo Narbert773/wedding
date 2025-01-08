@@ -2,14 +2,14 @@
   <div class="forms-container">
     <Spinner :isVisible="isLoading" />
     <div class="forms-container__group">
-      <h3>Кол-во человек:</h3>
+      <h3>{{ textStorePlural.humansQuantity }}</h3>
       <v-text-field class="input" label="" variant="underlined" v-model="guestQuantity" :rules="rules"></v-text-field>
     </div>
-    <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabled" @click="generateGuestForms">Подтвердить</v-btn>
+    <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabled" @click="generateGuestForms">{{ textStoreButton.confirm }}</v-btn>
     <div class="guest-form__wrapper">
       <transition-group name="fade" tag="div" class="guest-form__transition-wrapper">
         <div v-for="index in guests" :key="index" class="guest-form">
-          <p class="guest-number">Гость № {{ index + 1 }}</p>
+          <p class="guest-number">{{ textStorePlural.guestNumber }} {{ index + 1 }}</p>
           <EntryForm class="entry-form" :index="index" @formSubmitted="handleFormSubmitted" />
         </div>
       </transition-group>
@@ -23,6 +23,11 @@ import Spinner from '../components/Spinner.vue';
 
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStorePlural = textStore.textData.plural;
+const textStoreButton = textStore.textData.button;
 
 const guestQuantity = ref('');
 const rulesText = ref('');

@@ -2,14 +2,14 @@
   <div class="forms-container">
     <div class="kids">
       <div class="forms-container__group">
-        <h3>Кол-во детей:</h3>
+        <h3>{{ textStoreKid.kidsQuantity }}</h3>
         <v-text-field class="input" label="" variant="underlined" v-model="kidsQuantity" :rules="kidRules"></v-text-field>
-        <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabledKidsBtn" @click="generateKidsForms">Подтвердить</v-btn>
+        <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabledKidsBtn" @click="generateKidsForms">{{ textStoreButton.confirm }}</v-btn>
       </div>
       <div class="guest-form__wrapper">
         <transition-group name="fade" tag="div" class="guest-form__transition-wrapper">
           <div v-for="index in kids" :key="'kid-' + index" class="guest-form">
-            <p class="guest-number">Ребенок № {{ index + 1 }}</p>
+            <p class="guest-number">{{ textStoreKid.kidsNumber }} {{ index + 1 }}</p>
             <KidsForm class="entry-form" :index="index" @formSubmitted="handleKidFormSubmitted" />
           </div>
         </transition-group>
@@ -19,12 +19,12 @@
       <div class="forms-container__group">
         <h3>Кол-во взрослых:</h3>
         <v-text-field class="input" label="" variant="underlined" v-model="adultsQuantity" :rules="adultRules"></v-text-field>
-        <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabledAdultssBtn" @click="generateAdultsForms">Подтвердить</v-btn>
+        <v-btn variant="outlined" class="confirm-btn" :disabled="isDisabledAdultssBtn" @click="generateAdultsForms">{{ textStoreButton.confirm }}</v-btn>
       </div>
       <div class="guest-form__wrapper">
         <transition-group name="fade" tag="div" class="guest-form__transition-wrapper">
           <div v-for="index in adults" :key="'adult-' + index" class="guest-form">
-            <p class="guest-number">Гость № {{ index + 1 }}</p>
+            <p class="guest-number">{{ textStoreKid.guestNumber }} {{ index + 1 }}</p>
             <EntryForm class="entry-form" :index="index" @formSubmitted="handleAdultFormSubmitted" />
           </div>
         </transition-group>
@@ -41,6 +41,11 @@ import Spinner from '../components/Spinner.vue';
 
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreKid = textStore.textData.kidsPage;
+const textStoreButton = textStore.textData.button;
 
 const adultsQuantity = ref('');
 const kidsQuantity = ref('');

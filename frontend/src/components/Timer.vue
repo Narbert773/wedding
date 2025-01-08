@@ -1,9 +1,13 @@
 <template>
-  <p class="remaining-date">Осталось: {{ days }} дней | {{ hours }} {{ writingHoursProperly(hours) }} | {{ minutes }} минут | {{ seconds }} секунд</p>
+  <p class="remaining-date">{{ textStoreTimer.left }} {{ days }} {{ textStoreTimer.days }} | {{ hours }} {{ writingHoursProperly(hours) }} | {{ minutes }} {{ textStoreTimer.minutes }} | {{ seconds }} {{ textStoreTimer.seconds }}</p>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreTimer = textStore.textData.timer;
 
 const targetDate = new Date('2025-06-14T00:00:00');
 let intervalId: any;

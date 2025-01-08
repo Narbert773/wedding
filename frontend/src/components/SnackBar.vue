@@ -2,13 +2,17 @@
   <v-snackbar v-model="isVisible" timeout="3000" :color="color" top class="snackbar">
     {{ message }}
     <template v-slot:actions>
-      <v-btn color="white" variant="text" @click="isVisible = false"> Close </v-btn>
+      <v-btn color="white" variant="text" @click="isVisible = false">{{ textStoreButton.close }}</v-btn>
     </template>
   </v-snackbar>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps, defineEmits, watch } from 'vue';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreButton = textStore.textData.button;
 
 const props = defineProps({
   message: {

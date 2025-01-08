@@ -1,5 +1,5 @@
 <template>
-  <h3 class="h3">Представьтесь пожалуйста</h3>
+  <h3 class="h3">{{ textStoreSingle.welcome }}</h3>
   <Spinner :isVisible="isLoading" />
   <transition name="fade">
     <EntryForm v-if="isFormVisible" @formSubmitted="handleFormSubmitted" />
@@ -12,6 +12,10 @@ import Spinner from '../components/Spinner.vue';
 
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import { useTextStore } from '../store/textStore';
+
+const textStore = useTextStore();
+const textStoreSingle = textStore.textData.single;
 
 const router = useRouter();
 

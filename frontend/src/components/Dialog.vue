@@ -30,10 +30,10 @@
 import { ref } from 'vue';
 import { useTextStore } from '../store/textStore';
 
-const dialog = ref(false);
-
 const textStore = useTextStore();
 const textStoreDialog = textStore.textData.dialog;
+
+const dialog = ref(false);
 </script>
 
 <style scoped lang="scss">
