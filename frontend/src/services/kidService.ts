@@ -29,3 +29,15 @@ export async function removeKid(kid: Kid): Promise<void> {
     throw error;
   }
 }
+
+export async function changeKid(kid: Kid): Promise<void> {
+  try {
+    await axios.patch(`${BASE_URL}/kids/${kid.id}`, {
+      firstName: kid.firstName,
+      lastName: kid.lastName,
+    });
+  } catch (error) {
+    console.error('Ошибка при редактировании ребенка:', error);
+    throw error;
+  }
+}

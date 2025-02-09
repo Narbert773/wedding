@@ -1,6 +1,6 @@
 <template>
   <div v-if="internalShow" class="pa-4 text-center">
-    <v-btn :text="textStoreSecret.first.title" @click="dialog = true"></v-btn
+    <v-btn :text="textStoreSecret.first.title" @click="dialog = true" size="s"></v-btn
     ><v-dialog v-model="dialog" max-width="680">
       <v-card title="">
         <template v-slot:text>
