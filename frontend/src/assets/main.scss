@@ -51,35 +51,40 @@ html::-webkit-scrollbar-track {
 }
 
 .app.light {
-  background-color: white;
-  color: #121212;
+  background-color: #fdf4e3;
+  color: #1d1e33;
 }
 
 .app.dark {
-  background-color: #121212;
-  color: white;
+  background-color: #1d1e33;
+  color: #fdf4e3;
+}
+
+.app.dark .invite-btn {
+  background-color: #fdf4e3;
+  color: #1d1e33;
 }
 
 .app.light .toolbar {
-  background-color: white;
+  background-color: #fdf4e3;
   color: #121212;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .app.dark .toolbar {
-  background-color: #121212;
+  background-color: #1d1e33;
   color: white;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .app.light .link {
-  background-color: white;
+  background-color: #fdf4e3;
   color: #121212;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .app.dark .link {
-  background-color: #121212;
+  background-color: #1d1e33;
   color: white;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
