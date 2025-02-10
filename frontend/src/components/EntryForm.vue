@@ -1,7 +1,7 @@
 <template>
   <div class="form-border">
     <v-sheet class="mx-auto" width="300">
-      <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted">
+      <v-form @submit.prevent="submitForm" :disabled="isFormSubmitted" S>
         <v-text-field v-model="guest.firstName" :rules="firstNameRules" label="Имя"></v-text-field>
         <v-text-field v-model="guest.lastName" :rules="lastNameRules" label="Фамилия"></v-text-field>
         <v-btn class="mt-2" type="submit" block :disabled="isDisabled">{{ textStoreButton.submit }}</v-btn>
@@ -87,5 +87,11 @@ async function submitForm(): Promise<void> {
 .form-border {
   border: 5px solid white;
   padding: 10px;
+}
+
+@media (max-width: 400px) {
+  .mx-auto {
+    width: 200px !important;
+  }
 }
 </style>

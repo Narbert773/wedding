@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar v-model="isVisible" timeout="3000" :color="color" top class="snackbar">
+  <v-snackbar v-model="isVisible" timeout="2000" :color="color" class="snackbar">
     {{ message }}
     <template v-slot:actions>
       <v-btn color="white" variant="text" @click="isVisible = false">{{ textStoreButton.close }}</v-btn>
@@ -46,8 +46,8 @@ watch(
 <style scoped lang="scss">
 .snackbar {
   position: fixed !important;
-  bottom: 16px;
   z-index: 9999;
+  top: 20px;
   width: auto;
   max-width: 400px;
   min-width: 200px;

@@ -2,7 +2,7 @@
   <v-toolbar density="compact" class="toolbar">
     <v-btn v-if="showBackButton" class="back-btn" @click="clearLocalStorage"
       ><v-toolbar-title class="toolbar-title"
-        ><router-link to="/" class="link"><v-icon icon="mdi-arrow-left" start></v-icon>{{ textStoreButton.return }}</router-link></v-toolbar-title
+        ><router-link to="/" class="link link-text"><v-icon icon="mdi-arrow-left" start></v-icon>{{ textStoreButton.return }}</router-link></v-toolbar-title
       >
     </v-btn>
   </v-toolbar>
@@ -27,6 +27,16 @@ function clearLocalStorage(): void {
 
 <style scoped lang="scss">
 .toolbar {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 900px) {
+  .back-btn {
+    margin-top: -20px;
+  }
+
+  .link-text {
+    font-size: 15px;
+  }
 }
 </style>

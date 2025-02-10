@@ -29,9 +29,13 @@
       <v-card :title="textStoreSecret.last.header">
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-text-field class="input" :label="textStoreSecret.last.label" variant="underlined" v-model="password"></v-text-field>
-          <v-btn :text="textStoreSecret.last.confirm" variant="text" @click="checkPassword"></v-btn>
-          <v-btn :text="textStoreSecret.last.text" variant="text" @click="dialog3 = false"></v-btn>
+          <div class="secret-group">
+            <v-text-field class="input" :label="textStoreSecret.last.label" :rules="isSubmitted ? entryRules : []" variant="underlined" v-model="password"></v-text-field>
+            <div>
+              <v-btn :text="textStoreSecret.last.confirm" variant="text" @click="checkPassword"></v-btn>
+              <v-btn :text="textStoreSecret.last.text" variant="text" @click="dialog3 = false"></v-btn>
+            </div>
+          </div>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -67,7 +71,10 @@ const password = ref('');
 const isLoading = ref(false);
 const internalShow = ref(false);
 
+const isSubmitted = ref(false);
+
 function checkPassword() {
+  isSubmitted.value = true;
   isLoading.value = false;
 
   if (password.value !== PASSWORD) {
@@ -88,6 +95,12 @@ function checkPassword() {
   }, 300);
 }
 
+const entryRules = [
+  (value: string) => {
+    return value === PASSWORD ? true : 'Неверный пароль';
+  },
+];
+
 watch(
   () => props.show,
   (newValue) => {
@@ -95,3 +108,12 @@ watch(
   }
 );
 </script>
+
+<style scoped lang="scss">
+.secret-group {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+</style>

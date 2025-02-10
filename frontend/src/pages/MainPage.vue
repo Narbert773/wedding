@@ -176,7 +176,7 @@ const showButton = ref(false);
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
   }
 
   .copyright {
@@ -190,6 +190,7 @@ const showButton = ref(false);
   .link {
     text-decoration: none;
     color: rgb(var(--v-theme-info)) !important;
+    font-size: 18px;
   }
 }
 </style>

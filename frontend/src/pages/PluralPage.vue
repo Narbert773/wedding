@@ -112,6 +112,7 @@ function handleFormSubmitted(index: number) {
       display: flex;
       flex-direction: column;
       height: fit-content;
+      width: 100%;
 
       .guest-number {
         margin: auto;
@@ -152,6 +153,28 @@ function handleFormSubmitted(index: number) {
   .fade-leave-to {
     opacity: 0;
     transform: translateY(20px);
+  }
+
+  @media (max-width: 1500px) {
+    .guest-form__transition-wrapper {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 1420px) {
+    .guest-form__transition-wrapper {
+      flex-direction: column !important;
+      margin-top: 20px;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 415px) {
+    .forms-container__group {
+      h3 {
+        font-size: 14px;
+      }
+    }
   }
 }
 </style>

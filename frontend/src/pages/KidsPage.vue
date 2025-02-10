@@ -141,7 +141,6 @@ function checkCompletion() {
 <style scoped lang="scss">
 .forms-container {
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-top: 150px;
   width: 100%;

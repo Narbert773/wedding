@@ -1,8 +1,8 @@
 <template>
   <div :class="['app', theme]" v-if="!textStore.loading">
     <Toolbar class="toolbar" />
-    <h1 class="h1">{{ textStore.textData.app.mainHeader }}</h1>
-    <h2 class="h2">{{ textStore.textData.app.names }}</h2>
+    <h1 class="h1">{{ textStore.textData.mainModule.mainHeader }}<br />{{ textStore.textData.mainModule.date }}</h1>
+    <h2 class="h2">{{ textStore.textData.mainModule.names }}</h2>
     <Timer />
     <div class="theme-container">
       <v-icon v-if="theme === 'light'" class="theme-icon" icon="mdi-brightness-4" start @click="toggleTheme"></v-icon>
@@ -47,6 +47,12 @@ onMounted(() => {
   flex-direction: column;
   position: relative;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  margin: 0;
+
+  .h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
   .h2 {
     margin-top: 10px;
@@ -55,13 +61,82 @@ onMounted(() => {
 
   .theme-container {
     position: absolute;
-    top: 1.5%;
-    right: 5%;
+    top: 23px;
+    right: 3%;
     transform: translate(-50%, -50%);
 
     .theme-icon {
       font-size: 30px;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .h1 {
+    font-size: 27px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .h2 {
+    font-size: 27px !important;
+    margin-bottom: 40px;
+  }
+
+  .theme-container {
+    top: 27px !important;
+    right: 1% !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .h1 {
+    font-size: 23px;
+  }
+
+  .h2 {
+    font-size: 23px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .h1 {
+    font-size: 20px;
+  }
+
+  .h2 {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 526px) {
+  .h1 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 478px) {
+  .h1 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 399px) {
+  .h1 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .h2 {
+    font-size: 20px !important;
+    margin-bottom: 40px;
   }
 }
 </style>
