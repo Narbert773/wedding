@@ -4,7 +4,7 @@
     <div class="guest-quantity">
       <p>{{ textStoreGuest.common }} {{ totalGuests }}</p>
     </div>
-    <Table :guests="guests" :kids="kids" :totalGuests="totalGuests" />
+    <Table :guests="guests" :kids="kids" :totalGuests="totalGuests" @update-guests="updateGuest" @update-kids="updateKid" @remove-kids="deleteKid" @remove-guests="deleteGuest" />
   </div>
 </template>
 
@@ -38,6 +38,32 @@ async function getAllGuests(): Promise<void> {
   } catch (error) {
     console.error('Не удалось получить список гостей:', error);
   }
+}
+
+function updateGuest(updatedGuest: Guest) {
+  const index = guests.value.findIndex((g) => g.id === updatedGuest.id);
+  if (index !== -1) {
+    guests.value[index] = updatedGuest;
+  } else {
+    console.warn('Гость с таким ID не найден:', updatedGuest.id);
+  }
+}
+
+function updateKid(updatedKid: Kid) {
+  const index = kids.value.findIndex((k) => k.id === updatedKid.id);
+  if (index !== -1) {
+    kids.value[index] = updatedKid;
+  } else {
+    console.warn('Ребенок с таким ID не найден:', updatedKid.id);
+  }
+}
+
+function deleteGuest(guestId: number) {
+  guests.value = guests.value.filter((g) => g.id !== guestId);
+}
+
+function deleteKid(kidId: number) {
+  kids.value = kids.value.filter((k) => k.id !== kidId);
 }
 
 onMounted(() => {

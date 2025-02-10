@@ -77,7 +77,7 @@ const showButton = ref(false);
   margin-top: 50px;
 
   .img {
-    height: 300px;
+    height: 350px;
     width: 300px;
   }
 }
@@ -170,7 +170,7 @@ const showButton = ref(false);
   flex-direction: column;
   text-align: center;
   gap: 10px;
-  width: 80%;
+  width: 100%;
 
   .contacts {
     margin-top: 40px;
@@ -181,12 +181,15 @@ const showButton = ref(false);
 
   .copyright {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
+    padding-left: 20px;
+    height: 56px;
   }
 
   .link {
     text-decoration: none;
+    color: rgb(var(--v-theme-info)) !important;
   }
 }
 </style>

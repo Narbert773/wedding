@@ -80,6 +80,8 @@ function checkPassword() {
   snackbarMessage.value = 'Пароль принят';
   snackbarColor.value = 'green';
 
+  localStorage.setItem('accessGranted', 'true');
+
   setTimeout(() => {
     isLoading.value = false;
     router.push('/guests');

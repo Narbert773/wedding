@@ -49,12 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { useTextStore } from '../store/textStore';
 import { Guest } from '../interfaces/guest.interface';
 import { Kid } from '../interfaces/kid.interface';
-import { changeGuest, fetchAllGuests, removeGuest } from '../services/guestService';
-import { changeKid, fetchAllKids, removeKid } from '../services/kidService';
+import { changeGuest, removeGuest } from '../services/guestService';
+import { changeKid, removeKid } from '../services/kidService';
 import Spinner from './Spinner.vue';
 import SnackBar from './SnackBar.vue';
 
@@ -73,11 +73,10 @@ defineProps({
   },
 });
 
+const emit = defineEmits(['remove-guests', 'update-guests', 'remove-kids', 'update-kids']);
+
 const textStore = useTextStore();
 const textStoreGuest = textStore.textData.guest;
-
-const guests = ref<Guest[]>([]);
-const kids = ref<Kid[]>([]);
 
 const isLoading = ref(false);
 const snackbarMessage = ref('');
@@ -102,21 +101,15 @@ async function saveGuestChanges(): Promise<void> {
   const lastName = lastNameParts.join(' ');
 
   try {
-    await changeGuest({
+    const updatedData = {
       ...editingGuest.value,
       firstName: firstName || editingGuest.value.firstName,
       lastName: lastName || editingGuest.value.lastName,
-    });
+    };
 
-    const index = guests.value.findIndex((g) => g.id === editingGuest.value?.id);
+    await changeGuest(updatedData);
 
-    if (index !== -1) {
-      guests.value[index] = {
-        ...guests.value[index],
-        firstName: firstName || editingGuest.value.firstName,
-        lastName: lastName || editingGuest.value.lastName,
-      };
-    }
+    emit('update-guests', JSON.parse(JSON.stringify(updatedData)));
 
     snackbarMessage.value = 'Гость успешно отредактирован';
     snackbarColor.value = 'green';
@@ -144,21 +137,15 @@ async function saveKidChanges(): Promise<void> {
   const lastName = lastNameParts.join(' ');
 
   try {
-    await changeKid({
+    const updatedData = {
       ...editingKid.value,
       firstName: firstName || editingKid.value.firstName,
       lastName: lastName || editingKid.value.lastName,
-    });
+    };
 
-    const index = kids.value.findIndex((k) => k.id === editingKid.value?.id);
+    await changeKid(updatedData);
 
-    if (index !== -1) {
-      kids.value[index] = {
-        ...kids.value[index],
-        firstName: firstName || editingKid.value.firstName,
-        lastName: lastName || editingKid.value.lastName,
-      };
-    }
+    emit('update-kids', updatedData);
 
     snackbarMessage.value = 'Ребенок успешно отредактирован';
     snackbarColor.value = 'green';
@@ -180,7 +167,7 @@ async function deleteGuest(guest: Guest): Promise<void> {
       return;
     }
     await removeGuest(guest);
-    guests.value = guests.value.filter((g) => g.id !== guest.id);
+    emit('remove-guests', guest.id);
   } catch (error) {
     console.error('Не удалось удалить гостя:', error);
   }
@@ -193,31 +180,11 @@ async function deleteKid(kid: Kid): Promise<void> {
       return;
     }
     await removeKid(kid);
-    kids.value = kids.value.filter((k) => k.id !== kid.id);
+    emit('remove-kids', kid.id);
   } catch (error) {
     console.error('Не удалось удалить ребенка:', error);
   }
 }
-
-async function getAllGuests(): Promise<void> {
-  try {
-    const guestResponse = await fetchAllGuests();
-    const kidResponse = await fetchAllKids();
-    guests.value = guestResponse;
-    kids.value = kidResponse;
-  } catch (error) {
-    console.error('Не удалось получить список гостей:', error);
-  }
-}
-
-onMounted(async () => {
-  isLoading.value = true;
-
-  setTimeout(async () => {
-    isLoading.value = false;
-    await getAllGuests();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">

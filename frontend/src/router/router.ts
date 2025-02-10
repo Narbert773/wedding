@@ -24,12 +24,23 @@ const routes = [
   {
     path: '/guests',
     component: () => import('../pages/GuestsPage.vue'),
+    meta: { requiresAuth: true },
   },
 ];
 
 const router = createRouter({
   routes,
   history: createWebHashHistory(),
+});
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('accessGranted');
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/');
+  } else {
+    next();
+  }
 });
 
 export default router;
