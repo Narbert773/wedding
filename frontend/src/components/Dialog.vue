@@ -86,7 +86,7 @@ const dialog = ref(false);
   }
 
   .option {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .card-title,
