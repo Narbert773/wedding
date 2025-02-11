@@ -1,5 +1,5 @@
 <template>
-  <v-carousel cycle hide-delimiters :show-arrows="false" class="image-container">
+  <v-carousel cycle hide-delimiters :show-arrows="false" :interval="3000" class="image-container">
     <v-carousel-item v-for="image in images" :key="image.id" :src="image.src" :alt="image.alt" class="img" cover></v-carousel-item>
   </v-carousel>
 </template>

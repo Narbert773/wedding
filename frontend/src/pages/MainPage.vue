@@ -8,14 +8,16 @@
     </section>
     <section class="wedding">
       <h2 class="wedding-title">{{ textStoreMainPage.mainHeader }}</h2>
-      <List />
+      <List class="list" />
     </section>
     <section class="map">
       <Map class="border" />
     </section>
     <section class="wishes">
       <h2 class="wishes-title">{{ textStoreMainPage.wishesTitle }}</h2>
-      <p class="wishes-text">{{ textStoreMainPage.wishesDescription }}</p>
+      <p class="wishes-text">{{ textStoreMainPage.wishesDescriptionFirst }}</p>
+      <p class="wishes-text">{{ textStoreMainPage.wishesDescriptionSecond }}</p>
+      <p class="wishes-text">{{ textStoreMainPage.wishesDescriptionThird }}</p>
     </section>
   </main>
   <footer class="footer">
@@ -81,8 +83,12 @@ const showButton = ref(false);
   }
 }
 
+.list {
+  margin-top: -25px;
+}
+
 .wedding {
-  margin-top: 100px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,8 +142,11 @@ const showButton = ref(false);
   }
 }
 
+.wishes-text {
+}
+
 .map {
-  margin: 70px auto 40px;
+  margin: 30px auto 40px;
   width: 600px;
 }
 

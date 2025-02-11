@@ -2,7 +2,7 @@
   <div :class="['app', theme]" v-if="!textStore.loading">
     <Toolbar class="toolbar" />
     <h1 class="h1">{{ textStore.textData.mainModule.mainHeader }}<br />{{ textStore.textData.mainModule.date }}</h1>
-    <h2 class="h2">{{ textStore.textData.mainModule.names }}</h2>
+    <h2 class="h2">{{ textStore.textData.mainModule.nikita }}<img src='./assets/images/ring.png' alt='Кольца' class='ring'></img>{{ textStore.textData.mainModule.dasha }}</h2>
     <Timer />
     <div class="theme-container">
       <v-icon v-if="theme === 'light'" class="theme-icon" icon="mdi-brightness-4" start @click="toggleTheme"></v-icon>
@@ -48,6 +48,12 @@ onMounted(() => {
   position: relative;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
   margin: 0;
+
+  .ring{
+    height: 30px;
+    width: 35px;
+    margin: auto 6px;
+  }
 
   .h1 {
     text-align: center;

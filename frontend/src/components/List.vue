@@ -1,5 +1,5 @@
 <template>
-  <v-list lines="three" class="v-list">
+  <v-list lines="two" class="v-list">
     <v-list-item v-for="item in dayPlanItems" :key="item.id">
       <v-list-item-title class="v-title">
         {{ item.purpose }} <span v-if="item.place">| {{ item.place }}</span>
