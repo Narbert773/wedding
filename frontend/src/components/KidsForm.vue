@@ -126,4 +126,10 @@ async function submitForm() {
   border: 5px solid white;
   padding: 10px;
 }
+
+@media (max-width: 400px) {
+  .mx-auto {
+    width: 200px !important;
+  }
+}
 </style>

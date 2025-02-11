@@ -60,6 +60,14 @@ html::-webkit-scrollbar-track {
   color: #fdf4e3;
 }
 
+.app.dark .form-border {
+  border: 5px solid #fdf4e3;
+}
+
+.app.light .form-border {
+  border: 5px solid rgb(6, 53, 85);
+}
+
 .app.dark .invite-btn {
   background-color: #fdf4e3;
   color: #1d1e33;

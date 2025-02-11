@@ -1,4 +1,5 @@
 <template>
+  <Announcement />
   <div class="forms-container">
     <Spinner :isVisible="isLoading" />
     <div class="forms-container__group">
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import EntryForm from '../components/EntryForm.vue';
 import Spinner from '../components/Spinner.vue';
+import Announcement from '../components/Announcement.vue';
 
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';

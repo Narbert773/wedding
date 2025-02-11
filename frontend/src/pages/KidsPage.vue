@@ -1,4 +1,5 @@
 <template>
+  <Announcement />
   <div class="forms-container">
     <div class="kids">
       <div class="forms-container__group">
@@ -38,6 +39,7 @@
 import EntryForm from '../components/EntryForm.vue';
 import KidsForm from '../components/KidsForm.vue';
 import Spinner from '../components/Spinner.vue';
+import Announcement from '../components/Announcement.vue';
 
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
@@ -168,9 +170,13 @@ function checkCompletion() {
     display: flex;
     flex-direction: column;
     height: 100%;
+
     .guest-form__wrapper {
       display: flex;
       justify-content: center;
+      align-items: center;
+      max-width: 100%;
+      margin: auto;
       width: 700px;
     }
   }
@@ -238,6 +244,26 @@ function checkCompletion() {
   .fade-leave-to {
     opacity: 0;
     transform: translateY(20px);
+  }
+}
+
+@media (max-width: 1420px) {
+  .forms-container {
+    flex-direction: column;
+    gap: 50px;
+
+    .guest-form__transition-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 415px) {
+  .forms-container__group {
+    h3 {
+      font-size: 16px;
+    }
   }
 }
 </style>
