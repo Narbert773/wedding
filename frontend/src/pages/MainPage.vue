@@ -1,57 +1,39 @@
 <template>
-  <header>
-    <div class="image-container">
-      <img src="../assets/images/22.JPG" alt="ДН" class="img border" />
-      <img src="../assets/images/2.JPG" alt="ДН" class="img border" />
-      <img src="../assets/images/5.JPG" alt="ДН" class="img border" />
-    </div>
-  </header>
+  <header></header>
+  <Carousel />
   <main>
     <section class="info">
       <h1 class="info-header">{{ textStoreMainPage.theMainHeader }}</h1>
       <p class="info-hedaer_text">{{ textStoreMainPage.guestsWelcoming }}</p>
-      <h2 class="info-header">{{ textStoreMainPage.mainHeader }}</h2>
-      <p class="info-hedaer_text">{{ textStoreMainPage.description }}</p>
     </section>
     <section class="wedding">
-      <h2 class="wedding-title">{{ textStoreMainPage.weddingTitle }}</h2>
-      <div class="wedding-wrapper">
-        <div class="wedding-group">
-          <h3>{{ textStoreMainPage.when }}</h3>
-          <p>{{ textStoreMainPage.marriageTime }}</p>
-          <p>{{ textStoreMainPage.banquetTime }}</p>
-        </div>
-        <v-divider :thickness="3" class="border-opacity-100" color="info" vertical></v-divider>
-        <div class="wedding-group">
-          <h3>{{ textStoreMainPage.where }}</h3>
-          <p>{{ textStoreMainPage.marriagePlace.name }}</p>
-          <span>{{ textStoreMainPage.marriagePlace.adress }}</span>
-          <p>{{ textStoreMainPage.banquetPlace.name }}</p>
-          <span>{{ textStoreMainPage.banquetPlace.adress }}</span>
-        </div>
-      </div>
+      <h2 class="wedding-title">{{ textStoreMainPage.mainHeader }}</h2>
+      <List />
     </section>
     <section class="map">
       <Map class="border" />
     </section>
+    <section class="wishes">
+      <h2 class="wishes-title">{{ textStoreMainPage.wishesTitle }}</h2>
+      <p class="wishes-text">{{ textStoreMainPage.wishesDescription }}</p>
+    </section>
   </main>
   <footer class="footer">
     <h3>{{ textStoreMainPage.footer.title }}</h3>
-    <p>{{ textStoreMainPage.footer.firstParagraph }}</p>
     <p>{{ textStoreMainPage.footer.secondParagraph }}</p>
     <div class="contacts">
       <span>
-        <a class="link" href="https://t.me/nsmeenov" target="_blank">{{ textStoreMainPage.footer.contacts.nikita }}</a>
+        <a class="link link-text" href="https://t.me/+p2GLCjk_fx00YTJk" target="_blank">{{ textStoreMainPage.footer.contacts.telegramGroup }}</a>
       </span>
       <span>
-        <a class="link" href="https://t.me/Dasha_mlt" target="_blank">{{ textStoreMainPage.footer.contacts.dasha }}</a>
+        <a class="link link-text" href="https://t.me/Dasha_mlt" target="_blank">{{ textStoreMainPage.footer.contacts.dasha }}</a>
       </span>
       <span>
-        <a class="link" href="https://t.me/+p2GLCjk_fx00YTJk" target="_blank">{{ textStoreMainPage.footer.contacts.telegramGroup }}</a>
+        <a class="link link-text" href="https://t.me/nsmeenov" target="_blank">{{ textStoreMainPage.footer.contacts.nikita }}</a>
       </span>
     </div>
     <div class="copyright">
-      <span @click="showButton = true" class="lol">{{ textStoreMainPage.footer.contacts.copyright }}</span>
+      <span @click="showButton = true" class="pointer">{{ textStoreMainPage.footer.contacts.copyright }}</span>
       <SecretDialog :show.sync="showButton" />
     </div>
   </footer>
@@ -59,9 +41,11 @@
 
 <script setup lang="ts">
 import Map from '../components/Map.vue';
-import { useTextStore } from '../store/textStore';
 import SecretDialog from '../components/SecretDialog.vue';
+import Carousel from '../components/Carousel.vue';
+import List from '../components/List.vue';
 
+import { useTextStore } from '../store/textStore';
 import { ref } from 'vue';
 
 const textStore = useTextStore();
@@ -71,15 +55,10 @@ const showButton = ref(false);
 </script>
 
 <style scoped lang="scss">
-.image-container {
+.main {
   display: flex;
-  gap: 15px;
-  margin-top: 50px;
-
-  .img {
-    height: 350px;
-    width: 300px;
-  }
+  justify-content: center;
+  align-items: center;
 }
 
 .info {
@@ -159,9 +138,19 @@ const showButton = ref(false);
 
 .map {
   margin: 70px auto 40px;
+  width: 600px;
 }
 
-.lol {
+.wishes {
+  margin: 40px auto 50px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 30px;
+}
+
+.pointer {
   cursor: pointer;
 }
 
@@ -191,6 +180,68 @@ const showButton = ref(false);
     text-decoration: none;
     color: rgb(var(--v-theme-info)) !important;
     font-size: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .wishes {
+    width: 80%;
+  }
+
+  .info-hedaer_text {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 625px) {
+  .map {
+    width: 450px;
+  }
+}
+
+@media (max-width: 550px) {
+  .wishes {
+    width: 60%;
+  }
+
+  .info-hedaer_text {
+    font-size: 16px;
+  }
+
+  .wishes-text,
+  .link-text,
+  .copyright {
+    font-size: 14px !important;
+  }
+
+  .map {
+    width: 400px;
+  }
+
+  .contacts {
+    gap: 15px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .map {
+    width: 350px;
+  }
+
+  .contacts {
+    gap: 7px !important;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 375px) {
+  .map {
+    width: 320px;
+  }
+
+  .contacts {
+    gap: 3px !important;
+    margin-left: 10px;
   }
 }
 </style>

@@ -10,6 +10,6 @@ import Dialog from '../components/Dialog.vue';
 
 <style scoped lang="scss">
 .form-container {
-  margin-top: 200px;
+  margin-top: 150px;
 }
 </style>

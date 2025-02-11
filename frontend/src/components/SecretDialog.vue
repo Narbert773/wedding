@@ -1,6 +1,6 @@
 <template>
   <div v-if="internalShow" class="pa-4 text-center">
-    <v-btn :text="textStoreSecret.first.title" @click="dialog = true" size="s"></v-btn
+    <v-btn class="secret-btn" :text="textStoreSecret.first.title" @click="dialog = true" size="s" variant="text"></v-btn
     ><v-dialog v-model="dialog" max-width="680">
       <v-card title="">
         <template v-slot:text>
@@ -115,5 +115,9 @@ watch(
   display: flex;
   flex-direction: column;
   margin-right: 40px;
+}
+
+.secret-button {
+  font-size: 12px !important;
 }
 </style>

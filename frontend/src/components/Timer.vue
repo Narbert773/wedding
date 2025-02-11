@@ -63,7 +63,6 @@ onUnmounted(() => {
 @media (max-width: 900px) {
   .remaining-date {
     font-size: 15px;
-    margin-top: 40px;
   }
 }
 

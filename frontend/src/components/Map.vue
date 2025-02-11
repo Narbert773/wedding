@@ -9,8 +9,7 @@
       showScaleInCopyrights: true,
       theme: 'light',
     }"
-    width="100%"
-    height="500px"
+    height="350px"
   >
     <yandex-map-default-scheme-layer />
     <yandex-map-default-features-layer />
@@ -51,8 +50,8 @@ const markers = [
 .pin {
   cursor: pointer;
   max-width: unset;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 </style>
