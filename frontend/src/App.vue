@@ -48,6 +48,7 @@ onMounted(() => {
   position: relative;
   transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
   margin: 0;
+  
 
   .ring{
     height: 30px;
@@ -82,6 +83,7 @@ onMounted(() => {
     flex-direction: column;
     text-align: center;
     padding: 10px;
+    padding-bottom: 30px;
   }
 
   .h1 {

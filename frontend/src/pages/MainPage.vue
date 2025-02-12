@@ -183,6 +183,7 @@ const showButton = ref(false);
     align-items: center;
     padding-left: 20px;
     height: 56px;
+    margin-bottom: -25px;
   }
 
   .link {

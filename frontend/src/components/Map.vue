@@ -3,7 +3,7 @@
     v-model="map"
     :settings="{
       location: {
-        center: [37.617644, 55.755819],
+        center: [37.5, 55.8],
         zoom: 9.4,
       },
       showScaleInCopyrights: true,

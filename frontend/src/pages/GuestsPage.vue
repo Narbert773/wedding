@@ -76,9 +76,9 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  width: 1000px;
+  min-width: 100%;
   flex-direction: column;
+  overflow: hidden;
 
   .guest-quantity {
     margin-top: 50px;

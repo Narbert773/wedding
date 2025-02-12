@@ -145,3 +145,18 @@ html::-webkit-scrollbar-track {
   border: 3px solid white !important;
   padding: 5px;
 }
+
+@media (max-width: 725px) {
+  .v-text-field input {
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 485px) {
+  .v-text-field input {
+    font-size: 12px;
+  }
+}
