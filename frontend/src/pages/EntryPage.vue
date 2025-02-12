@@ -38,7 +38,7 @@ onMounted(() => {
 
   .go-to-main-btn {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 100px;
     cursor: pointer;
   }
 
