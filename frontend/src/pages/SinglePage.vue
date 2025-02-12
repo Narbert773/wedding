@@ -26,6 +26,7 @@ function handleFormSubmitted() {
   isLoading.value = true;
   setTimeout(() => {
     isLoading.value = false;
+    localStorage.setItem('formCompleted', 'true');
     router.push('/main');
   }, 1000);
 }
